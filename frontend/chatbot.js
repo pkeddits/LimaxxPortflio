@@ -9,7 +9,7 @@
 // ─── Configuração ────────────────────────────────────────────────────────────
 
 /** URL base do backend. Altere para o endereço de produção quando necessário. */
-const API_BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = 'https://portfolio-v2-production-895e.up.railway.app';
 
 /** Endpoint do chat no backend */
 const CHAT_ENDPOINT = `${API_BASE_URL}/api/chat`;
