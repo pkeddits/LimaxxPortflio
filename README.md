@@ -2,7 +2,7 @@
 
 Site de portfólio pessoal com chatbot integrado via IA, arquitetura full-stack e deploy em produção.
 
-🔗 **[portfolio-v2-one-tan-53.vercel.app](https://limaxx.space)**
+🔗 **[https://limaxx.space](https://limaxx.space)**
 
 ---
 
