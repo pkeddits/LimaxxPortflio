@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Felipe Lima · Cloud · Cybersecurity · Infrastructure</title>
+<meta name="description" content="Portfólio de Felipe Lima — Cloud Computing, Cybersecurity e Infraestrutura de TI. Background em desenvolvimento web como diferencial técnico.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #F5A623;
+    --orange: #FF6B35;
+    --gold-light: #FFD580;
+    --orange-dark: #D4521A;
+    --bg: #0A0A0B;
+    --bg2: #111114;
+    --bg3: #16161A;
+    --surface: #1C1C22;
+    --surface2: #242430;
+    --text: #F0EDE8;
+    --muted: #8A8794;
+    --border: rgba(245,166,35,0.15);
+    --glow: rgba(245,166,35,0.2);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* TYPOGRAPHY */
+  h1, h2, h3, h4 { font-family: 'Syne', sans-serif; line-height: 1.1; }
+  .gradient-text {
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 1.25rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    backdrop-filter: blur(20px);
+    background: rgba(10,10,11,0.85);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: #0A0A0B !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 999px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { width: 24px; height: 2px; background: var(--gold); border-radius: 1px; transition: all 0.3s; }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 6rem 2rem 4rem;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 80% 60% at 70% 40%, rgba(245,166,35,0.07) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 50% at 20% 80%, rgba(255,107,53,0.05) 0%, transparent 50%);
+  }
+  .hero-grid-lines {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(245,166,35,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(245,166,35,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center; position: relative; z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(245,166,35,0.1);
+    border: 1px solid var(--border);
+    padding: 0.35rem 1rem; border-radius: 999px;
+    font-size: 0.8rem; color: var(--gold);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; background: var(--gold); border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+  .hero-title {
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 800; line-height: 1.05;
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.6s ease 0.1s forwards;
+  }
+  .hero-subtitle-wrap {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-family: 'Syne', sans-serif;
+    font-weight: 600; color: var(--muted);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.6s ease 0.2s forwards;
+    min-height: 2.8rem;
+  }
+  #typed-text { color: var(--gold); }
+  .cursor { display: inline-block; background: var(--gold); width: 2px; height: 1.1em; margin-left: 2px; animation: blink 0.8s infinite; vertical-align: middle; }
+  @keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0;} }
+  .hero-desc {
+    color: var(--muted); font-size: 1.05rem; line-height: 1.8;
+    max-width: 480px; margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.6s ease 0.3s forwards;
+  }
+  .hero-btns {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    opacity: 0; animation: fadeUp 0.6s ease 0.4s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    color: #0A0A0B; font-weight: 600; font-size: 0.9rem;
+    padding: 0.75rem 1.75rem; border-radius: 999px;
+    text-decoration: none; transition: all 0.3s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,166,35,0.35); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border);
+    color: var(--text); font-weight: 500; font-size: 0.9rem;
+    padding: 0.75rem 1.5rem; border-radius: 999px;
+    text-decoration: none; transition: all 0.3s; background: transparent;
+    cursor: pointer;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; animation: fadeIn 0.8s ease 0.4s forwards;
+  }
+  .avatar-wrap {
+    position: relative; width: 340px; height: 340px;
+  }
+  .avatar-ring {
+    position: absolute; inset: -16px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, var(--gold), var(--orange), transparent, var(--gold));
+    animation: spin 6s linear infinite;
+    opacity: 0.6;
+  }
+  .avatar-ring2 {
+    position: absolute; inset: -8px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, transparent, var(--orange), transparent);
+    animation: spin 4s linear infinite reverse;
+    opacity: 0.4;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .avatar-img {
+    position: relative; width: 100%; height: 100%;
+    border-radius: 50%; overflow: hidden;
+    background: var(--surface);
+    border: 3px solid var(--bg);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .avatar-placeholder {
+    width: 100%; height: 100%; border-radius: 50%;
+    background: linear-gradient(135deg, var(--surface2) 0%, var(--surface) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 0.5rem;
+  }
+  .avatar-initials {
+    font-family: 'Syne', sans-serif; font-size: 5rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .glow-circle {
+    position: absolute; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(245,166,35,0.15) 0%, transparent 70%);
+    border-radius: 50%; top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: glowPulse 3s ease-in-out infinite;
+    z-index: 1;
+  }
+  @keyframes glowPulse { 0%,100%{transform:translate(-50%,-50%) scale(1);opacity:0.6;} 50%{transform:translate(-50%,-50%) scale(1.3);opacity:1;} }
+  .floating-badge {
+    position: absolute; z-index: 4;
+    background: var(--surface2); border: 1px solid var(--border);
+    border-radius: 12px; padding: 0.5rem 0.9rem;
+    font-size: 0.8rem; font-weight: 500;
+    backdrop-filter: blur(10px);
+    animation: float 3s ease-in-out infinite;
+  }
+  .floating-badge:nth-child(3)  { top: 4%;   right: -2%;  animation-delay: 0s;    }
+  .floating-badge:nth-child(4)  { bottom: 12%; left: -10%; animation-delay: 1s;    }
+  .floating-badge:nth-child(5)  { top: 38%;  right: -14%; animation-delay: 0.5s;  }
+  .floating-badge:nth-child(6)  { top: 68%;  right: -6%;  animation-delay: 1.5s;  }
+  .floating-badge:nth-child(7)  { top: 18%;  left: -12%;  animation-delay: 0.8s;  }
+  .floating-badge:nth-child(8)  { bottom: 30%; left: -5%;  animation-delay: 1.3s;  }
+  .floating-badge:nth-child(9)  { top: 52%;  left: -14%;  animation-delay: 0.3s;  }
+  .floating-badge:nth-child(10) { bottom: 2%; right: -3%;  animation-delay: 1.8s;  }
+  @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-8px);} }
+  .badge-dot { color: var(--gold); margin-right: 4px; }
+
+  /* SECTION COMMONS */
+  section { padding: 6rem 2rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+    margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--muted); font-size: 1.05rem; max-width: 560px; }
+  .reveal { opacity: 0; transform: translateY(30px); transition: all 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ABOUT */
+  #about { background: var(--bg2); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center;
+  }
+  .about-text p { color: var(--muted); font-size: 1.05rem; margin-bottom: 1.25rem; line-height: 1.85; }
+  .about-stats {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1.5rem; margin-top: 2.5rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif; font-size: 2.2rem; font-weight: 800;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+  }
+  .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.25rem; }
+  .about-img-side {
+    position: relative; display: flex; justify-content: center;
+  }
+  .about-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 24px; padding: 2.5rem;
+    max-width: 360px; width: 100%;
+  }
+  .about-card-avatar {
+    width: 80px; height: 80px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800;
+    color: #0A0A0B; margin-bottom: 1.5rem;
+  }
+  .about-card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .about-card p { color: var(--gold); font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .about-card-info { display: flex; flex-direction: column; gap: 0.75rem; }
+  .about-card-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.9rem; color: var(--muted); }
+  .about-card-row svg { width: 16px; height: 16px; color: var(--gold); flex-shrink: 0; }
+  .deco-blob {
+    position: absolute; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
+    border-radius: 50%; bottom: -40px; right: -40px; z-index: 0;
+  }
+
+  /* EXPERIENCE */
+  #experience { background: var(--bg); }
+  .timeline { position: relative; margin-top: 3rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  .timeline-item {
+    position: relative; padding-left: 3rem; margin-bottom: 3rem;
+  }
+  .timeline-dot {
+    position: absolute; left: -6px; top: 4px;
+    width: 13px; height: 13px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    border: 2px solid var(--bg);
+  }
+  .timeline-date {
+    font-size: 0.8rem; color: var(--gold);
+    font-weight: 600; letter-spacing: 0.05em; margin-bottom: 0.5rem;
+  }
+  .timeline-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.75rem;
+  }
+  .timeline-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.25rem; }
+  .timeline-card .company { color: var(--gold); font-size: 0.9rem; margin-bottom: 1rem; }
+  .timeline-card p { color: var(--muted); font-size: 0.95rem; }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .tag {
+    background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2);
+    color: var(--gold); font-size: 0.75rem; padding: 0.25rem 0.75rem; border-radius: 999px;
+  }
+
+  /* PROJECTS */
+  #projects { background: var(--bg2); }
+  .projects-section-label {
+    display: flex; align-items: center; gap: 0.75rem;
+    margin: 3rem 0 1.5rem;
+  }
+  .projects-section-label:first-of-type { margin-top: 3rem; }
+  .status-dot {
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    animation: pulse 2s infinite;
+  }
+  .status-dot.green  { background: #22c55e; box-shadow: 0 0 6px rgba(34,197,94,0.5); }
+  .status-dot.yellow { background: #eab308; box-shadow: 0 0 6px rgba(234,179,8,0.5); }
+  .status-dot.blue   { background: #60a5fa; box-shadow: 0 0 6px rgba(96,165,250,0.5); animation: none; }
+  .status-dot.yellow { animation: pulseYellow 2s infinite; }
+  @keyframes pulseYellow { 0%,100%{opacity:1;} 50%{opacity:0.4;} }
+  .projects-section-label h3 { font-size: 1.1rem; font-weight: 700; color: var(--text); }
+  .projects-section-label span { font-size: 0.8rem; color: var(--muted); }
+  .projects-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; overflow: hidden;
+    transition: all 0.3s; cursor: pointer;
+    position: relative;
+  }
+  .project-card:hover { transform: translateY(-6px); border-color: rgba(245,166,35,0.4); box-shadow: 0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(245,166,35,0.1); }
+  .project-preview {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem; position: relative; overflow: hidden;
+  }
+  .project-preview::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 40%, var(--surface) 100%);
+  }
+  .project-body { padding: 1.5rem; }
+  .project-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; }
+  .project-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.65; margin-bottom: 1.25rem; }
+  .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.25rem; }
+  .tech-pill {
+    background: var(--surface2); border: 1px solid var(--border);
+    font-size: 0.75rem; color: var(--muted);
+    padding: 0.2rem 0.65rem; border-radius: 6px;
+  }
+  .project-links { display: flex; gap: 0.75rem; }
+  .project-link {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--gold); text-decoration: none;
+    transition: all 0.2s;
+    padding: 0.4rem 1rem; border-radius: 999px;
+    border: 1px solid rgba(245,166,35,0.3);
+  }
+  .project-link:hover { background: rgba(245,166,35,0.1); }
+
+  /* DIFERENCIAIS */
+  #diferenciais { background: var(--bg); }
+  .diff-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1rem; margin-top: 3rem;
+  }
+  .diff-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 16px; padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  .diff-card:hover { border-color: rgba(245,166,35,0.4); transform: translateY(-3px); }
+  .diff-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; margin-bottom: 1rem;
+  }
+  .diff-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .diff-card p { font-size: 0.85rem; color: var(--muted); }
+
+  /* SKILLS */
+  #skills { background: var(--bg2); }
+  .skills-tabs { display: flex; gap: 0.75rem; margin: 2.5rem 0 2rem; flex-wrap: wrap; }
+  .skills-tab {
+    padding: 0.5rem 1.25rem; border-radius: 999px; font-size: 0.9rem; font-weight: 500;
+    border: 1px solid var(--border); background: transparent;
+    color: var(--muted); cursor: pointer; transition: all 0.2s;
+  }
+  .skills-tab.active { background: linear-gradient(135deg, var(--gold), var(--orange)); color: #0A0A0B; border-color: transparent; }
+  .skills-panel { display: none; }
+  .skills-panel.active { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 1rem; }
+  .skill-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1.25rem 1rem;
+    text-align: center; transition: all 0.3s;
+  }
+  .skill-card:hover { border-color: rgba(245,166,35,0.4); transform: translateY(-3px); box-shadow: 0 8px 20px rgba(245,166,35,0.08); }
+  .skill-card.meta { opacity: 0.6; border-style: dashed; }
+  .skill-card.meta:hover { opacity: 0.85; }
+  .skill-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+  .skill-name { font-size: 0.85rem; font-weight: 500; color: var(--text); }
+  .skill-badge {
+    font-size: 0.65rem; color: var(--gold); font-weight: 600;
+    background: rgba(245,166,35,0.1); border-radius: 4px;
+    padding: 0.1rem 0.4rem; margin-top: 0.3rem; display: inline-block;
+  }
+
+  /* FORMACAO */
+  #formacao { background: var(--bg); }
+  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; }
+  .edu-card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 20px; padding: 2rem; position: relative; overflow: hidden;
+  }
+  .edu-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--gold), var(--orange));
+  }
+  .edu-type { font-size: 0.75rem; color: var(--gold); font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .edu-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+  .edu-card p { color: var(--muted); font-size: 0.9rem; }
+  .edu-badge {
+    display: inline-block; margin-top: 0.75rem;
+    background: rgba(245,166,35,0.1); border: 1px solid rgba(245,166,35,0.2);
+    color: var(--gold); font-size: 0.75rem; padding: 0.2rem 0.75rem; border-radius: 999px;
+  }
+  .cert-future {
+    background: repeating-linear-gradient(
+      45deg, var(--surface) 0px, var(--surface) 10px,
+      rgba(245,166,35,0.03) 10px, rgba(245,166,35,0.03) 20px
+    );
+  }
+  .cert-list { list-style: none; margin-top: 1rem; display: flex; flex-direction: column; gap: 0.6rem; }
+  .cert-list li { font-size: 0.875rem; color: var(--muted); display: flex; align-items: flex-start; gap: 0.5rem; }
+  .cert-list li::before { content: '•'; color: var(--gold); flex-shrink: 0; }
+
+  /* CONTATO */
+  #contato { background: var(--bg2); }
+  .contato-inner {
+    max-width: 700px; margin: 0 auto;
+    text-align: center;
+  }
+  .contato-info h2 { font-size: clamp(1.8rem, 3vw, 2.5rem); font-weight: 800; margin-bottom: 1rem; }
+  .contato-info p { color: var(--muted); font-size: 1rem; margin-bottom: 2.5rem; }
+  .contato-links {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .contato-link {
+    display: flex; align-items: center; gap: 1rem;
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 1rem 1.25rem;
+    text-decoration: none; color: var(--text);
+    transition: all 0.3s; text-align: left;
+  }
+  .contato-link:hover { border-color: var(--gold); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,166,35,0.1); }
+  .contato-link-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: rgba(245,166,35,0.1);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; flex-shrink: 0;
+  }
+  .contato-link-text small { font-size: 0.75rem; color: var(--muted); display: block; }
+  .contato-link-text span { font-size: 0.95rem; font-weight: 500; }
+  .contato-cta {
+    margin-top: 2.5rem;
+    display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;
+  }
+  .open-to-work {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.3);
+    color: #22c55e; border-radius: 999px;
+    padding: 0.4rem 1rem; font-size: 0.82rem; font-weight: 600;
+    margin-bottom: 1.5rem;
+  }
+  .open-to-work::before { content: ''; width: 6px; height: 6px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+
+  /* FOOTER */
+  footer {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 2rem; text-align: center;
+    color: var(--muted); font-size: 0.9rem;
+  }
+  footer span { color: var(--gold); }
+
+  /* CHATBOT */
+  #chat-btn {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+    width: 58px; height: 58px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(245,166,35,0.4);
+    transition: all 0.3s; font-size: 1.4rem;
+  }
+  #chat-btn:hover { transform: scale(1.08); box-shadow: 0 8px 30px rgba(245,166,35,0.5); }
+  #chat-panel {
+    position: fixed; bottom: 5.5rem; right: 2rem; z-index: 998;
+    width: 360px; height: 500px;
+    background: var(--bg3); border: 1px solid var(--border);
+    border-radius: 20px; display: none; flex-direction: column;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    overflow: hidden;
+  }
+  #chat-panel.open { display: flex; }
+  .chat-header {
+    padding: 1rem 1.25rem;
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    display: flex; align-items: center; gap: 0.75rem;
+  }
+  .chat-header-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(0,0,0,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; color: #0A0A0B;
+  }
+  .chat-header-info h4 { font-size: 0.95rem; font-weight: 700; color: #0A0A0B; margin: 0; }
+  .chat-header-info small { font-size: 0.75rem; color: rgba(0,0,0,0.6); }
+  .chat-messages {
+    flex: 1; overflow-y: auto; padding: 1.25rem; display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .msg { max-width: 80%; padding: 0.65rem 1rem; border-radius: 14px; font-size: 0.88rem; line-height: 1.5; }
+  .msg-bot { background: var(--surface); color: var(--text); border-bottom-left-radius: 4px; align-self: flex-start; }
+  .msg-user { background: linear-gradient(135deg, var(--gold), var(--orange)); color: #0A0A0B; border-bottom-right-radius: 4px; align-self: flex-end; font-weight: 500; }
+  .chat-suggestions { padding: 0 1.25rem; display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.75rem; }
+  .chat-sugg {
+    font-size: 0.75rem; background: rgba(245,166,35,0.1);
+    border: 1px solid rgba(245,166,35,0.2); color: var(--gold);
+    padding: 0.3rem 0.7rem; border-radius: 999px; cursor: pointer; transition: all 0.2s;
+  }
+  .chat-sugg:hover { background: rgba(245,166,35,0.2); }
+  .chat-input-row { display: flex; gap: 0.5rem; padding: 1rem 1.25rem; border-top: 1px solid var(--border); }
+  .chat-input {
+    flex: 1; background: var(--surface); border: 1px solid var(--border);
+    border-radius: 10px; padding: 0.65rem 1rem; color: var(--text);
+    font-size: 0.9rem; outline: none; font-family: inherit;
+  }
+  .chat-send {
+    background: linear-gradient(135deg, var(--gold), var(--orange));
+    border: none; border-radius: 10px; padding: 0.65rem 1rem;
+    cursor: pointer; color: #0A0A0B; font-weight: 700; font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .chat-send:hover { transform: scale(1.05); }
+
+  /* TYPING INDICATOR */
+  .typing-dots { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+  .typing-dots span {
+    width: 7px; height: 7px; background: var(--muted);
+    border-radius: 50%; animation: typingBounce 1.2s infinite;
+  }
+  .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce { 0%,60%,100%{transform:translateY(0);opacity:0.4;} 30%{transform:translateY(-6px);opacity:1;} }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner, .about-grid, .edu-grid { grid-template-columns: 1fr; }
+    .contato-links { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    nav ul { display: none; }
+    .hamburger { display: flex; }
+    .avatar-wrap { width: 260px; height: 260px; }
+    .projects-grid { grid-template-columns: 1fr; }
+    #chat-panel { width: calc(100vw - 2rem); right: 1rem; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 1.25rem; }
+    nav { padding: 1rem 1.25rem; }
+    .hero-btns { flex-direction: column; }
+    .btn-primary, .btn-outline { justify-content: center; }
+    .diff-grid { grid-template-columns: 1fr 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Felipe.</a>
+  <ul class="nav-links">
+    <li><a href="#about">Sobre</a></li>
+    <li><a href="#experience">Experiência</a></li>
+    <li><a href="#projects">Projetos</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contato" class="nav-cta">Contato</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger-btn">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu" style="display:none;position:fixed;top:70px;left:0;right:0;z-index:99;background:var(--bg3);border-bottom:1px solid var(--border);padding:1.5rem 2rem;">
+  <ul style="list-style:none;display:flex;flex-direction:column;gap:1.25rem;">
+    <li><a href="#about" style="color:var(--text);text-decoration:none;font-size:1.1rem;" class="mobile-nav-link">Sobre</a></li>
+    <li><a href="#experience" style="color:var(--text);text-decoration:none;font-size:1.1rem;" class="mobile-nav-link">Experiência</a></li>
+    <li><a href="#projects" style="color:var(--text);text-decoration:none;font-size:1.1rem;" class="mobile-nav-link">Projetos</a></li>
+    <li><a href="#skills" style="color:var(--text);text-decoration:none;font-size:1.1rem;" class="mobile-nav-link">Skills</a></li>
+    <li><a href="#contato" style="color:var(--gold);text-decoration:none;font-size:1.1rem;font-weight:600;" class="mobile-nav-link">Contato</a></li>
+  </ul>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-tag">Disponível para oportunidades</div>
+      <h1 class="hero-title">Olá, eu sou<br><span class="gradient-text">Felipe</span></h1>
+      <div class="hero-subtitle-wrap">
+        <span id="typed-text"></span><span class="cursor"></span>
+      </div>
+      <p class="hero-desc">
+        Construindo soluções em Cloud, Infraestrutura e Cybersecurity.<br>
+        Background em desenvolvimento web como diferencial técnico.
+      </p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          Baixar Currículo
+        </a>
+        <a href="https://linkedin.com/in/limaxx" target="_blank" class="btn-outline">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/pkeddits" target="_blank" class="btn-outline">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="avatar-wrap">
+        <div class="glow-circle"></div>
+        <div class="avatar-ring"></div>
+        <div class="avatar-ring2"></div>
+        <div class="avatar-img">
+          <div class="avatar-placeholder">
+            <span class="avatar-initials">F</span>
+          </div>
+        </div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Cloud AWS</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Cybersecurity</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Linux & Infra</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Redes</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Python</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Dev Web</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Git · GitHub</div>
+        <div class="floating-badge"><span class="badge-dot">◆</span> Hardening</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p class="section-label">Sobre mim</p>
+        <h2 class="section-title">Tecnologia é minha <span class="gradient-text">paixão</span></h2>
+        <p>Sou estudante de Análise e Desenvolvimento de Sistemas (Cruzeiro do Sul, conclusão 2026), com foco em Cloud Computing, Cybersecurity e Infraestrutura de TI.</p>
+        <p>Minha trajetória não começou em TI — vim do audiovisual, onde atuei por 3 anos como editor de vídeo freelancer. Essa experiência me deu algo que a maioria dos candidatos técnicos não tem: disciplina de entrega, comunicação direta com cliente e capacidade de aprender ferramentas novas rápido. Hoje aplico isso no estudo técnico diário.</p>
+        <p>Tenho base em desenvolvimento web (front-end e back-end), com projetos reais em produção — e uso esse conhecimento como diferencial em infraestrutura e segurança. Entender como uma aplicação funciona por dentro torna o trabalho de cloud e cyber muito mais eficaz.</p>
+        <p>Construo projetos práticos documentados no GitHub para provar na prática o que aprendo — não só teoria.</p>
+        <div class="about-stats">
+          <div class="stat-card">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Pilares — Cloud · Cybersecurity · Infra</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">3+</div>
+            <div class="stat-label">Anos de experiência profissional (audiovisual)</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">2026</div>
+            <div class="stat-label">Meta: AWS Cloud Practitioner + Security+</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-num">100%</div>
+            <div class="stat-label">Dedicação e foco</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-img-side reveal">
+        <div class="about-card">
+          <div class="about-card-avatar">F</div>
+          <h3>Felipe Lima</h3>
+          <p>TI · Cloud · Cybersecurity</p>
+          <div class="about-card-info">
+            <div class="about-card-row">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              São Paulo, Brasil
+            </div>
+            <div class="about-card-row">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 10.5l-10-7.5L2 10.5M5 8v10a1 1 0 001 1h4v-5h4v5h4a1 1 0 001-1V8"/></svg>
+              ADS — Cruzeiro do Sul
+            </div>
+            <div class="about-card-row">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              Disponível imediatamente
+            </div>
+            <div class="about-card-row">
+              <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+              Inglês Intermediário
+            </div>
+          </div>
+        </div>
+        <div class="deco-blob"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Trajetória</p>
+      <h2 class="section-title">Minha <span class="gradient-text">Experiência</span></h2>
+      <p class="section-sub">Cada etapa da minha jornada contribuiu com habilidades valiosas — comunicação, responsabilidade e visão de negócio.</p>
+    </div>
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2025 — Presente</div>
+        <div class="timeline-card">
+          <h3>Estudante de TI — Foco em Cloud & Cybersecurity</h3>
+          <div class="company">Cruzeiro do Sul — Análise e Desenvolvimento de Sistemas</div>
+          <p>Desenvolvendo base técnica sólida com foco em Cloud Computing, Linux, Redes e Segurança da Informação. Projetos práticos documentados no GitHub para consolidar o aprendizado além da teoria.</p>
+          <div class="timeline-tags">
+            <span class="tag">Cloud AWS</span><span class="tag">Linux</span><span class="tag">Redes</span><span class="tag">Cybersecurity</span><span class="tag">Python</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2023 — 2025</div>
+        <div class="timeline-card">
+          <h3>Desenvolvedor Web Freelancer</h3>
+          <div class="company">Projetos independentes — Front-end & Back-end</div>
+          <p>Construção de aplicações web reais com entrega em produção. Projetos para barbearia, agência de marketing e plataforma de nutrição com IA — desenvolvendo habilidades técnicas e de gestão de projetos com cliente.</p>
+          <div class="timeline-tags">
+            <span class="tag">React</span><span class="tag">Node.js</span><span class="tag">TypeScript</span><span class="tag">Supabase</span><span class="tag">AWS S3</span>
+          </div>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2020 — 2023</div>
+        <div class="timeline-card">
+          <h3>Editor de Vídeo Freelancer</h3>
+          <div class="company">Audiovisual — 3 anos de experiência profissional</div>
+          <p>Atuação como editor freelancer por 3 anos, desenvolvendo disciplina de entrega, comunicação direta com cliente e capacidade de aprender ferramentas novas com rapidez. Habilidades que hoje são aplicadas diretamente no estudo técnico e em projetos de TI.</p>
+          <div class="timeline-tags">
+            <span class="tag">Adobe Premiere</span><span class="tag">After Effects</span><span class="tag">Comunicação</span><span class="tag">Gestão de projetos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Portfólio</p>
+      <h2 class="section-title">Projetos <span class="gradient-text">Destacados</span></h2>
+      <p class="section-sub">Soluções reais construídas e documentadas — do desenvolvimento web à infraestrutura cloud.</p>
+    </div>
+
+    <!-- CONCLUÍDOS -->
+    <div class="projects-section-label reveal">
+      <div class="status-dot green"></div>
+      <h3>Concluídos</h3>
+      <span>— entregues e funcionando</span>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#1a1200,#2d1f00)">💈</div>
+        <div class="project-body">
+          <h3 class="project-title">Lucks Studio — Sistema de Agendamento</h3>
+          <p class="project-desc">Barbearia precisava de presença digital com sistema de agendamento integrado. Solução: aplicação web com autenticação, cadastro de serviços e controle de agendamentos em tempo real.</p>
+          <div class="project-stack">
+            <span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">Supabase</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/pkeddits" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#0d1a2e,#1a2d4a)">📢</div>
+        <div class="project-body">
+          <h3 class="project-title">Strike Media — Site Institucional</h3>
+          <p class="project-desc">Agência de marketing precisava de site profissional para converter visitantes em leads. Solução: landing page responsiva com design moderno e alta performance.</p>
+          <div class="project-stack">
+            <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">TypeScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/pkeddits" target="_blank" class="project-link">GitHub</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#0a2018,#0f3d24)">🥗</div>
+        <div class="project-body">
+          <h3 class="project-title">NutriAI</h3>
+          <p class="project-desc">Aplicação web de nutrição com inteligência artificial integrada para personalização de dietas e recomendações nutricionais automáticas.</p>
+          <div class="project-stack">
+            <span class="tech-pill">React</span><span class="tech-pill">TypeScript</span><span class="tech-pill">API OpenAI</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/pkeddits/nutriai" target="_blank" class="project-link">GitHub</a>
+            <a href="https://nutriai-lovat.vercel.app/" target="_blank" class="project-link">Demo →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#1a1200,#3d2d00)">⚡</div>
+        <div class="project-body">
+          <h3 class="project-title">Portfólio Pessoal — Versão Anterior</h3>
+          <p class="project-desc">Primeira versão do portfólio pessoal, desenvolvida como ponto de partida da presença digital. Mostra a evolução do design e das habilidades técnicas ao longo do tempo.</p>
+          <div class="project-stack">
+            <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span>
+          </div>
+          <div class="project-links">
+            <a href="https://limaxx-tech-portfolio.vercel.app" target="_blank" class="project-link">Demo ao Vivo →</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#1a0a00,#2d1800)">🌐</div>
+        <div class="project-body">
+          <h3 class="project-title">limaxx.space — Este Portfólio</h3>
+          <p class="project-desc">Portfólio pessoal atual, apresentando trajetória técnica, projetos e posicionamento profissional em Cloud, Cybersecurity e Infraestrutura. Chatbot com IA integrado.</p>
+          <div class="project-stack">
+            <span class="tech-pill">HTML</span><span class="tech-pill">CSS</span><span class="tech-pill">JavaScript</span><span class="tech-pill">Node.js</span><span class="tech-pill">Groq API</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/pkeddits/portfolio-v2" target="_blank" class="project-link">GitHub</a>
+            <a href="https://limaxx.space" target="_blank" class="project-link">Ver site →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- EM ANDAMENTO -->
+    <div class="projects-section-label reveal">
+      <div class="status-dot yellow"></div>
+      <h3>Em Andamento</h3>
+      <span>— desenvolvimento ativo</span>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#0a1a0a,#162d16)">🐧</div>
+        <div class="project-body">
+          <h3 class="project-title">Servidor Linux Hardenizado</h3>
+          <p class="project-desc">Ubuntu Server configurado com SSH, UFW, Fail2Ban e Nginx. Documentação completa do processo de hardening e configuração de segurança.</p>
+          <div class="project-stack">
+            <span class="tech-pill">Linux</span><span class="tech-pill">Bash</span><span class="tech-pill">Nginx</span><span class="tech-pill">UFW</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="border-color:rgba(234,179,8,0.3);color:#eab308;cursor:default;">Em desenvolvimento</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#1a1200,#2d2000)">🐍</div>
+        <div class="project-body">
+          <h3 class="project-title">Python Sysadmin Toolkit</h3>
+          <p class="project-desc">Scripts de automação para sysadmin: monitoramento de recursos, backup automatizado e análise de logs do sistema.</p>
+          <div class="project-stack">
+            <span class="tech-pill">Python</span><span class="tech-pill">Linux</span><span class="tech-pill">Bash</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="border-color:rgba(234,179,8,0.3);color:#eab308;cursor:default;">Em desenvolvimento</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal">
+        <div class="project-preview" style="background:linear-gradient(135deg,#0d1a2e,#1a2d4a)">🔌</div>
+        <div class="project-body">
+          <h3 class="project-title">Lab de Redes Cisco</h3>
+          <p class="project-desc">Topologia corporativa com VLANs, roteamento inter-VLAN e ACLs simulada no Packet Tracer. Documentação técnica completa.</p>
+          <div class="project-stack">
+            <span class="tech-pill">Cisco Packet Tracer</span><span class="tech-pill">VLANs</span><span class="tech-pill">Roteamento</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="border-color:rgba(234,179,8,0.3);color:#eab308;cursor:default;">Em desenvolvimento</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PRÓXIMOS PROJETOS -->
+    <div class="projects-section-label reveal">
+      <div class="status-dot blue"></div>
+      <h3>Próximos Projetos</h3>
+      <span>— roadmap de desenvolvimento</span>
+    </div>
+    <div class="projects-grid">
+
+      <div class="project-card reveal" style="opacity:0.75">
+        <div class="project-preview" style="background:linear-gradient(135deg,#1a0a0a,#2d1111)">☁️</div>
+        <div class="project-body">
+          <h3 class="project-title">Deploy na AWS (EC2 + S3 + IAM + VPC)</h3>
+          <p class="project-desc">Aplicação em produção com arquitetura cloud segura e escalável, documentada com diagrama de infraestrutura completo.</p>
+          <div class="project-stack">
+            <span class="tech-pill">AWS</span><span class="tech-pill">Linux</span><span class="tech-pill">Nginx</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="border-color:rgba(96,165,250,0.3);color:#60a5fa;cursor:default;">Planejado 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="opacity:0.75">
+        <div class="project-preview" style="background:linear-gradient(135deg,#0a1a0a,#152215)">🛡️</div>
+        <div class="project-body">
+          <h3 class="project-title">Cyber Hardening Lab</h3>
+          <p class="project-desc">Auditoria de servidor com Lynis, scan com Nmap e hardening documentado com score antes/depois. Análise real de superfície de ataque.</p>
+          <div class="project-stack">
+            <span class="tech-pill">Linux</span><span class="tech-pill">Nmap</span><span class="tech-pill">Lynis</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="border-color:rgba(96,165,250,0.3);color:#60a5fa;cursor:default;">Planejado 2026</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card reveal" style="opacity:0.75">
+        <div class="project-preview" style="background:linear-gradient(135deg,#0f2027,#203a43)">⚙️</div>
+        <div class="project-body">
+          <h3 class="project-title">Terraform AWS</h3>
+          <p class="project-desc">Toda a infraestrutura AWS provisionada como código — reproduzível, versionada e documentada. Infraestrutura as Code na prática.</p>
+          <div class="project-stack">
+            <span class="tech-pill">Terraform</span><span class="tech-pill">AWS</span><span class="tech-pill">IaC</span>
+          </div>
+          <div class="project-links">
+            <span class="project-link" style="border-color:rgba(96,165,250,0.3);color:#60a5fa;cursor:default;">Planejado 2026</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section id="diferenciais">
+  <div class="section-inner">
+    <div class="reveal" style="text-align:center;margin-bottom:0;">
+      <p class="section-label" style="text-align:center">Por que me escolher</p>
+      <h2 class="section-title" style="text-align:center">Meus <span class="gradient-text">Diferenciais</span></h2>
+    </div>
+    <div class="diff-grid">
+      <div class="diff-card reveal"><div class="diff-icon">🎯</div><h4>Liderança</h4><p>Capacidade de guiar equipes, tomar iniciativa e motivar pessoas em torno de objetivos comuns.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">💬</div><h4>Comunicação</h4><p>Transmite ideias com clareza, tanto técnicas quanto estratégicas, para diferentes perfis de audiência.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">🤝</div><h4>Trabalho em Equipe</h4><p>Colaborativo e proativo, contribui ativamente para o crescimento coletivo do time.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">🌱</div><h4>Aprendizado Rápido</h4><p>Absorve novas tecnologias e conceitos com velocidade — comprovado pela transição do audiovisual para TI.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">🧠</div><h4>Pensamento Analítico</h4><p>Abordagem estruturada para resolução de problemas, com foco em causa raiz e soluções sustentáveis.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">🔄</div><h4>Adaptabilidade</h4><p>Navega bem em ambientes de mudança, mantendo foco e qualidade mesmo sob pressão.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">🌍</div><h4>Inglês Intermediário</h4><p>Leitura técnica fluente em inglês, com capacidade de comunicação escrita em contexto profissional.</p></div>
+      <div class="diff-card reveal"><div class="diff-icon">⚡</div><h4>Proatividade</h4><p>Antecipa problemas e busca soluções sem esperar ser solicitado, gerando valor de forma constante.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Tecnologias</p>
+      <h2 class="section-title">Minhas <span class="gradient-text">Skills</span></h2>
+      <p class="section-sub">Cloud, Cybersecurity e Infraestrutura como foco principal — com background sólido em desenvolvimento web.</p>
+    </div>
+    <div class="skills-tabs">
+      <button class="skills-tab active" onclick="switchTab('cloud', this)">☁️ Cloud & Infra</button>
+      <button class="skills-tab" onclick="switchTab('cyber', this)">🛡️ Cybersecurity</button>
+      <button class="skills-tab" onclick="switchTab('prog', this)">🐍 Programação</button>
+      <button class="skills-tab" onclick="switchTab('dev', this)">💻 Dev Web</button>
+      <button class="skills-tab" onclick="switchTab('tools', this)">🔧 Ferramentas</button>
+    </div>
+
+    <div id="tab-cloud" class="skills-panel active">
+      <div class="skill-card"><span class="skill-icon">☁️</span><span class="skill-name">AWS</span></div>
+      <div class="skill-card"><span class="skill-icon">🐧</span><span class="skill-name">Linux</span></div>
+      <div class="skill-card"><span class="skill-icon">🔀</span><span class="skill-name">Git</span></div>
+      <div class="skill-card"><span class="skill-icon">🐙</span><span class="skill-name">GitHub</span></div>
+      <div class="skill-card"><span class="skill-icon">💻</span><span class="skill-name">VirtualBox</span></div>
+      <div class="skill-card meta"><span class="skill-icon">🐳</span><span class="skill-name">Docker</span><span class="skill-badge">Em estudo</span></div>
+      <div class="skill-card meta"><span class="skill-icon">⚙️</span><span class="skill-name">Terraform</span><span class="skill-badge">Em estudo</span></div>
+      <div class="skill-card meta"><span class="skill-icon">🔷</span><span class="skill-name">Azure</span><span class="skill-badge">Meta</span></div>
+      <div class="skill-card meta"><span class="skill-icon">🌩️</span><span class="skill-name">Google Cloud</span><span class="skill-badge">Meta</span></div>
+      <div class="skill-card meta"><span class="skill-icon">🚢</span><span class="skill-name">Kubernetes</span><span class="skill-badge">Meta</span></div>
+    </div>
+
+    <div id="tab-cyber" class="skills-panel">
+      <div class="skill-card"><span class="skill-icon">🛡️</span><span class="skill-name">Hardening</span></div>
+      <div class="skill-card"><span class="skill-icon">🎯</span><span class="skill-name">TryHackMe</span></div>
+      <div class="skill-card"><span class="skill-icon">🔍</span><span class="skill-name">Nmap</span></div>
+      <div class="skill-card"><span class="skill-icon">📡</span><span class="skill-name">Wireshark</span></div>
+      <div class="skill-card"><span class="skill-icon">📊</span><span class="skill-name">Análise de Logs</span></div>
+    </div>
+
+    <div id="tab-prog" class="skills-panel">
+      <div class="skill-card"><span class="skill-icon">🐍</span><span class="skill-name">Python</span></div>
+      <div class="skill-card"><span class="skill-icon">💻</span><span class="skill-name">Bash</span></div>
+      <div class="skill-card"><span class="skill-icon">🟨</span><span class="skill-name">JavaScript</span></div>
+      <div class="skill-card"><span class="skill-icon">🔷</span><span class="skill-name">TypeScript</span></div>
+      <div class="skill-card"><span class="skill-icon">💙</span><span class="skill-name">C#</span></div>
+      <div class="skill-card"><span class="skill-icon">☕</span><span class="skill-name">Java</span></div>
+    </div>
+
+    <div id="tab-dev" class="skills-panel">
+      <div class="skill-card"><span class="skill-icon">⚛️</span><span class="skill-name">React</span></div>
+      <div class="skill-card"><span class="skill-icon">🟢</span><span class="skill-name">Node.js</span></div>
+      <div class="skill-card"><span class="skill-icon">🌐</span><span class="skill-name">HTML/CSS</span></div>
+      <div class="skill-card"><span class="skill-icon">🟩</span><span class="skill-name">Supabase</span></div>
+      <div class="skill-card"><span class="skill-icon">🐘</span><span class="skill-name">PostgreSQL</span></div>
+      <div class="skill-card"><span class="skill-icon">🗃️</span><span class="skill-name">SQL</span></div>
+    </div>
+
+    <div id="tab-tools" class="skills-panel">
+      <div class="skill-card"><span class="skill-icon">🖊️</span><span class="skill-name">VS Code</span></div>
+      <div class="skill-card"><span class="skill-icon">📊</span><span class="skill-name">Excel</span></div>
+      <div class="skill-card"><span class="skill-icon">🎬</span><span class="skill-name">Adobe Premiere</span></div>
+      <div class="skill-card"><span class="skill-icon">✨</span><span class="skill-name">After Effects</span></div>
+      <div class="skill-card"><span class="skill-icon">🎨</span><span class="skill-name">Blender</span></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FORMAÇÃO -->
+<section id="formacao">
+  <div class="section-inner">
+    <div class="reveal">
+      <p class="section-label">Formação</p>
+      <h2 class="section-title">Educação & <span class="gradient-text">Certificações</span></h2>
+    </div>
+    <div class="edu-grid">
+
+      <div class="edu-card reveal">
+        <div class="edu-type">Graduação em andamento</div>
+        <h3>Análise e Desenvolvimento de Sistemas</h3>
+        <p>Faculdade Cruzeiro do Sul — São Paulo</p>
+        <span class="edu-badge">2025 — 2026</span>
+      </div>
+
+      <div class="edu-card reveal">
+        <div class="edu-type">Trilha de Certificações 2026</div>
+        <h3>Roadmap de Certificações</h3>
+        <p>Em andamento — do básico ao avançado</p>
+        <ul class="cert-list">
+          <li>Cisco IT Essentials (NetAcad) — gratuito, oficial Cisco</li>
+          <li>Microsoft Learn — Trilhas oficiais com badges digitais</li>
+          <li>Google Cybersecurity Certificate (Coursera)</li>
+          <li>AWS Cloud Practitioner (CLF-C02)</li>
+          <li>CompTIA Security+ — planejado</li>
+        </ul>
+      </div>
+
+      <div class="edu-card cert-future reveal">
+        <div class="edu-type" style="color:var(--muted)">Meta — 2026</div>
+        <h3 style="color:var(--muted)">AWS Cloud Practitioner</h3>
+        <p style="color:var(--muted)">Amazon Web Services — Fundamentos de Cloud</p>
+        <span class="edu-badge" style="opacity:0.5">CLF-C02 · Planejado</span>
+      </div>
+
+      <div class="edu-card cert-future reveal">
+        <div class="edu-type" style="color:var(--muted)">Meta — 2026</div>
+        <h3 style="color:var(--muted)">CompTIA Security+</h3>
+        <p style="color:var(--muted)">Segurança da Informação — Certificação internacional</p>
+        <span class="edu-badge" style="opacity:0.5">SY0-701 · Planejado</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+    <div class="contato-inner reveal">
+      <div class="contato-info">
+        <p class="section-label">Contato</p>
+        <div class="open-to-work">Open to Work — Suporte TI · Infraestrutura Jr · SOC N1</div>
+        <h2>Vamos construir o futuro <span class="gradient-text">juntos?</span></h2>
+        <p>Estou disponível para oportunidades em TI, estágios, projetos ou uma boa conversa sobre tecnologia. Escolha o canal que preferir!</p>
+      </div>
+      <div class="contato-links">
+        <a href="mailto:felipeplima2007@gmail.com" class="contato-link">
+          <div class="contato-link-icon">✉️</div>
+          <div class="contato-link-text">
+            <small>Email</small>
+            <span>felipeplima2007@gmail.com</span>
+          </div>
+        </a>
+        <a href="https://linkedin.com/in/limaxx" target="_blank" class="contato-link">
+          <div class="contato-link-icon">💼</div>
+          <div class="contato-link-text">
+            <small>LinkedIn</small>
+            <span>/in/limaxx</span>
+          </div>
+        </a>
+        <a href="https://github.com/pkeddits" target="_blank" class="contato-link">
+          <div class="contato-link-icon">🐙</div>
+          <div class="contato-link-text">
+            <small>GitHub</small>
+            <span>github.com/pkeddits</span>
+          </div>
+        </a>
+        <a href="https://limaxx.space" target="_blank" class="contato-link">
+          <div class="contato-link-icon">🌐</div>
+          <div class="contato-link-text">
+            <small>Site</small>
+            <span>limaxx.space</span>
+          </div>
+        </a>
+      </div>
+      <div class="contato-cta">
+        <a href="mailto:felipeplima2007@gmail.com" class="btn-primary">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          Enviar Email
+        </a>
+        <a href="https://linkedin.com/in/limaxx" target="_blank" class="btn-outline">Ver LinkedIn →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Desenvolvido com <span>♥</span> por <span>Felipe Lima</span> · 2025</p>
+  <p style="margin-top:0.5rem;font-size:0.8rem;">Feito com HTML, CSS & JavaScript puro · <span>limaxx.space</span></p>
+</footer>
+
+<!-- CHATBOT -->
+<button id="chat-btn" title="Fale com meu assistente">💬</button>
+<div id="chat-panel">
+  <div class="chat-header">
+    <div class="chat-header-avatar">F</div>
+    <div class="chat-header-info">
+      <h4>Felipe Bot</h4>
+      <small>Assistente de portfólio · Online</small>
+    </div>
+  </div>
+  <div class="chat-messages" id="chat-messages">
+    <div class="msg msg-bot">Olá! 👋 Sou o assistente virtual do Felipe. Posso te ajudar com informações sobre habilidades, projetos ou como entrar em contato!</div>
+  </div>
+  <div class="chat-suggestions">
+    <span class="chat-sugg">Quais são suas skills?</span>
+    <span class="chat-sugg">Me fale sobre os projetos</span>
+    <span class="chat-sugg">Como entrar em contato?</span>
+    <span class="chat-sugg">Experiência com cloud?</span>
+  </div>
+  <div class="chat-input-row">
+    <input class="chat-input" id="chat-input" placeholder="Digite sua pergunta...">
+    <button class="chat-send">→</button>
+  </div>
+</div>
+
+<script src="ui.js"></script>
+<script src="chatbot.js"></script>
+
+</body>
+</html>
