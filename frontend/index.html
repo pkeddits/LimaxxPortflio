@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Felipe Lima · Cloud · Cybersecurity · Infrastructure</title>
+<meta name="color-scheme" content="dark light">
 <meta name="description" content="Portfólio de Felipe Lima — Cloud Computing, Cybersecurity e Infraestrutura de TI.">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,17 +22,17 @@
 }
 /* ── LIGHT THEME ────────────────────────────────────────────────── */
 [data-theme="light"]{
-  --gold:#C8820A;--orange:#D95E1E;
-  --bg:#F2EDE4;--bg2:#EAE4D8;--bg3:#E2DAC9;
-  --surface:#FDFAF6;--surface2:#F0EAE0;
-  --text:#1C1814;--muted:#7A7060;
-  --border:rgba(180,130,30,0.18);--shadow:rgba(0,0,0,0.08);
-  --nav-bg:rgba(242,237,228,0.94);
+  --gold:#B87209;--orange:#C8521A;
+  --bg:#DDD6C8;--bg2:#D4CCBC;--bg3:#CAC2B0;
+  --surface:#EAE4D8;--surface2:#DDD6C8;
+  --text:#1C1814;--muted:#6A6254;
+  --border:rgba(160,120,30,0.2);--shadow:rgba(0,0,0,0.1);
+  --nav-bg:rgba(221,214,200,0.95);
 }
 [data-theme="light"] .cartoon{mix-blend-mode:multiply;}
 [data-theme="light"] .cartoon-bust{mix-blend-mode:multiply;}
 [data-theme="light"] .cartoon-full{mix-blend-mode:multiply;}
-[data-theme="light"] .hero-grid-lines{background-image:linear-gradient(rgba(180,130,30,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(180,130,30,0.06) 1px,transparent 1px);}
+[data-theme="light"] .hero-grid-lines{background-image:linear-gradient(rgba(160,120,30,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(160,120,30,0.07) 1px,transparent 1px);}
 [data-theme="light"] .timeline-dot{border-color:var(--bg);}
 /* ── RESET ──────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -74,7 +75,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display
 .btn-outline{display:inline-flex;align-items:center;gap:.5rem;border:1px solid var(--border);color:var(--text);font-weight:500;font-size:.9rem;padding:.75rem 1.5rem;border-radius:999px;text-decoration:none;transition:all .3s;background:transparent;cursor:pointer;}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px);}
 /* ── SECTION COMMONS ────────────────────────────────────────────── */
-section{padding:6rem 2rem;}
+section{padding:6rem 2rem;transition:background .3s;}
 .section-inner{max-width:1200px;margin:0 auto;}
 .section-label{font-size:.8rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.75rem;}
 .section-title{font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:1rem;}
@@ -249,9 +250,9 @@ section{padding:6rem 2rem;}
 footer{background:var(--bg);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;color:var(--muted);font-size:.9rem;}
 footer span{color:var(--gold);}
 /* ── CHATBOT ─────────────────────────────────────────────────────── */
-#chat-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--orange));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(245,166,35,.4);transition:all .3s;overflow:hidden;padding:0;}
+#chat-btn{position:fixed;bottom:2rem;right:2rem;z-index:999;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--orange));border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(245,166,35,.4);transition:all .3s;overflow:hidden;padding:0;color-scheme:light;forced-color-adjust:none;}
 #chat-btn:hover{transform:scale(1.08);box-shadow:0 8px 30px rgba(245,166,35,.5);}
-#chat-btn img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;}
+#chat-btn img{width:100%;height:100%;object-fit:cover;object-position:50% 15%;forced-color-adjust:none;}
 #chat-panel{position:fixed;bottom:5.5rem;right:2rem;z-index:998;width:360px;height:500px;background:var(--bg3);border:1px solid var(--border);border-radius:20px;display:none;flex-direction:column;box-shadow:0 20px 60px var(--shadow);overflow:hidden;}
 #chat-panel.open{display:flex;}
 .chat-header{padding:1rem 1.25rem;background:linear-gradient(135deg,var(--gold),var(--orange));display:flex;align-items:center;gap:.75rem;}
@@ -325,9 +326,8 @@ footer span{color:var(--gold);}
   .hero-visual{display:none;}
   .hero-mobile-cartoon{display:flex;}
 
-  /* About — hide cartoon on mobile, avoid dark box */
-  .about-cartoon-wrap{display:none;}
-  .about-card{margin-top:0;}
+  /* About — hide entire right column on mobile to kill dark gap */
+  .about-img-side{display:none;}
 
   /* Projects */
   .projects-grid{grid-template-columns:1fr;}
