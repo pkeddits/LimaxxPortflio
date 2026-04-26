@@ -1,111 +1,80 @@
-/**
- * ui.js
- * Módulo de interações da UI — separado do chatbot para melhor organização.
- * Contém: efeito de digitação, scroll reveal, abas de skills, menu mobile.
- */
-
 'use strict';
 
-// ─── Efeito de Digitação (Hero) ───────────────────────────────────────────────
-
-const TYPED_WORDS = ['Cloud & Infra', 'Cybersecurity', 'Linux & Infra', 'Python Dev', 'Dev Web'];
-
+// ── Typed Effect ──────────────────────────────────────────────────────────────
+let TYPED_WORDS = ['Cloud & Infra', 'Cybersecurity', 'Linux & Infra', 'Python Dev', 'Dev Web'];
 let currentWordIndex = 0;
 let currentCharIndex = 0;
 let isDeleting = false;
+let typedTimer = null;
 
-/**
- * Anima o texto rotativo da seção hero.
- * Digita uma palavra, aguarda, apaga e passa para a próxima.
- */
 function runTypedEffect() {
   const el = document.getElementById('typed-text');
   if (!el) return;
-
   const currentWord = TYPED_WORDS[currentWordIndex];
-
   if (!isDeleting) {
-    // Adiciona um caractere
     el.textContent = currentWord.slice(0, ++currentCharIndex);
-
     if (currentCharIndex === currentWord.length) {
-      // Palavra completa — pausa antes de apagar
       isDeleting = true;
-      setTimeout(runTypedEffect, 2000);
+      typedTimer = setTimeout(runTypedEffect, 2000);
       return;
     }
   } else {
-    // Remove um caractere
     el.textContent = currentWord.slice(0, --currentCharIndex);
-
     if (currentCharIndex === 0) {
-      // Palavra apagada — avança para a próxima
       isDeleting = false;
       currentWordIndex = (currentWordIndex + 1) % TYPED_WORDS.length;
     }
   }
-
-  setTimeout(runTypedEffect, isDeleting ? 60 : 110);
+  typedTimer = setTimeout(runTypedEffect, isDeleting ? 60 : 110);
 }
 
-// ─── Scroll Reveal ───────────────────────────────────────────────────────────
+// Called by language toggle to restart with new words
+window.restartTyped = function(words) {
+  if (typedTimer) clearTimeout(typedTimer);
+  TYPED_WORDS = words;
+  currentWordIndex = 0;
+  currentCharIndex = 0;
+  isDeleting = false;
+  const el = document.getElementById('typed-text');
+  if (el) el.textContent = '';
+  runTypedEffect();
+};
 
-/**
- * Usa IntersectionObserver para revelar elementos com classe .reveal
- * conforme o usuário rola a página.
- */
+// ── Scroll Reveal ─────────────────────────────────────────────────────────────
 function initScrollReveal() {
   const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    },
+    entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
     { threshold: 0.1 }
   );
-
-  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 }
 
-// ─── Abas de Skills ──────────────────────────────────────────────────────────
-
-/**
- * Alterna entre os painéis de habilidades.
- *
- * @param {string} tabId - ID da aba (sem o prefixo "tab-")
- * @param {HTMLElement} clickedBtn - Botão que foi clicado
- */
+// ── Skill Tabs ────────────────────────────────────────────────────────────────
 function switchSkillTab(tabId, clickedBtn) {
-  // Desativa todos os painéis e botões
-  document.querySelectorAll('.skills-panel').forEach((panel) => panel.classList.remove('active'));
-  document.querySelectorAll('.skills-tab').forEach((btn) => btn.classList.remove('active'));
-
-  // Ativa o selecionado
+  document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.skills-tab').forEach(b => b.classList.remove('active'));
   document.getElementById(`tab-${tabId}`).classList.add('active');
   clickedBtn.classList.add('active');
 }
 
-// ─── Menu Mobile ─────────────────────────────────────────────────────────────
-
-/**
- * Abre ou fecha o menu de navegação mobile.
- */
+// ── Mobile Menu ───────────────────────────────────────────────────────────────
 function toggleMobileMenu() {
   const menu = document.getElementById('mobile-menu');
-  const isVisible = menu.style.display !== 'none';
-  menu.style.display = isVisible ? 'none' : 'block';
+  menu.style.display = menu.style.display !== 'none' ? 'none' : 'block';
 }
 
-// ─── Exposição Global (necessária para handlers inline no HTML) ──────────────
-
+// ── Global exposure ───────────────────────────────────────────────────────────
 window.switchTab = switchSkillTab;
 window.toggleMenu = toggleMobileMenu;
 
-// ─── Inicialização ────────────────────────────────────────────────────────────
-
+// ── Init ──────────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   runTypedEffect();
   initScrollReveal();
+  document.getElementById('hamburger-btn')?.addEventListener('click', toggleMobileMenu);
+  document.querySelectorAll('.mobile-nav-link').forEach(l => {
+    l.addEventListener('click', () => {
+      document.getElementById('mobile-menu').style.display = 'none';
+    });
+  });
 });
