@@ -64,7 +64,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.25rem 2rem;display
 .nav-links a:hover{color:var(--gold);}
 .nav-cta{background:linear-gradient(135deg,var(--gold),var(--orange));color:#0A0A0B!important;padding:.5rem 1.25rem;border-radius:999px;font-weight:600!important;font-size:.85rem!important;}
 .nav-right{display:flex;align-items:center;gap:.5rem;}
-.nav-toggle{background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:.32rem .7rem;font-size:.75rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.03em;white-space:nowrap;}
+.nav-toggle{background:var(--surface);border:1px solid var(--border);color:var(--muted);border-radius:999px;padding:.32rem .65rem;font-size:.72rem;font-weight:700;cursor:pointer;transition:all .2s;letter-spacing:.02em;white-space:nowrap;min-width:2.2rem;text-align:center;}
 .nav-toggle:hover{border-color:var(--gold);color:var(--gold);}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:.25rem;}
 .hamburger span{width:24px;height:2px;background:var(--gold);border-radius:1px;transition:all .3s;display:block;}
@@ -304,30 +304,62 @@ footer span{color:var(--gold);}
   .formacao-top{grid-template-columns:1fr;}
   .edu-cartoon-wrap{display:none;}
 }
+
+/* ── TABLET / MOBILE NAV + LAYOUT ─────────────────────────────────── */
 @media(max-width:900px){
-  .hero-inner,.about-grid,.edu-grid{grid-template-columns:1fr;}
+  /* Nav: hide desktop links, show hamburger */
+  nav{padding:1rem 1rem;}
+  .nav-links{display:none !important;}
+  .hamburger{display:flex !important;}
+
+  /* Keep lang + theme visible in nav on mobile */
+  .nav-right{gap:.4rem;}
+  .nav-toggle{font-size:.72rem;padding:.3rem .6rem;}
+
+  /* Sections */
+  section{padding:4rem 1.25rem;}
+  .hero-inner,.edu-grid{grid-template-columns:1fr;}
+  .about-grid{grid-template-columns:1fr;gap:2rem;}
+
+  /* Hero */
   .hero-visual{display:none;}
   .hero-mobile-cartoon{display:flex;}
-  nav ul{display:none;}
-  .hamburger{display:flex;}
+
+  /* About — hide cartoon on mobile, avoid dark box */
+  .about-cartoon-wrap{display:none;}
+  .about-card{margin-top:0;}
+
+  /* Projects */
   .projects-grid{grid-template-columns:1fr;}
-  .projects-header{flex-direction:column;}
+  .projects-header{flex-direction:column;align-items:flex-start;}
   .projects-cartoon-wrap{display:none;}
+
+  /* Contato */
   .contato-links{grid-template-columns:1fr;}
+
+  /* Chat */
   #chat-panel{width:calc(100vw - 2rem);right:1rem;}
-  .about-cartoon-img{width:260px;margin-bottom:-35px;}
 }
-@media(max-width:700px){
-  section{padding:4rem 1.25rem;}
-  nav{padding:1rem 1.25rem;}
+
+/* ── SMALL MOBILE ─────────────────────────────────────────────────── */
+@media(max-width:600px){
+  nav{padding:.9rem 1rem;}
+  .nav-logo{font-size:1.2rem;}
   .hero-btns{flex-direction:column;}
-  .btn-primary,.btn-outline{justify-content:center;}
+  .btn-primary,.btn-outline{justify-content:center;width:100%;}
   .diff-grid{grid-template-columns:1fr 1fr;}
   .edu-grid{grid-template-columns:1fr;}
   .about-stats{grid-template-columns:1fr 1fr;}
-  .nav-toggle{font-size:.7rem;padding:.28rem .55rem;}
-  .hero-title{font-size:clamp(2.4rem,8vw,4rem);}
+  .hero-title{font-size:clamp(2.4rem,10vw,4rem);}
   .hero-desc{font-size:.95rem;}
+  .section-title{font-size:clamp(1.8rem,7vw,2.5rem);}
+
+  /* Mobile hero cartoon smaller */
+  .hero-mobile-cartoon{height:220px;}
+  .hero-mobile-cartoon-img{height:210px;}
+
+  /* Mobile menu full width */
+  #mobile-menu{padding:1.25rem 1rem;}
 }
 </style>
 </head>
@@ -359,10 +391,7 @@ footer span{color:var(--gold);}
     <li><a href="#skills" style="color:var(--text);text-decoration:none;font-size:1.1rem;" class="mobile-nav-link" data-i18n="nav.skills">Skills</a></li>
     <li><a href="#contato" style="color:var(--gold);text-decoration:none;font-size:1.1rem;font-weight:600;" class="mobile-nav-link" data-i18n="nav.contact">Contato</a></li>
   </ul>
-  <div style="display:flex;gap:.75rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--border);">
-    <button class="nav-toggle" id="lang-btn-m" onclick="toggleLang()" style="flex:1;">EN</button>
-    <button class="nav-toggle" id="theme-btn-m" onclick="toggleTheme()" style="flex:1;">🌓 Dim</button>
-  </div>
+
 </div>
 
 <!-- HERO -->
@@ -857,10 +886,9 @@ let currentTheme=localStorage.getItem('theme')||'dark';
 function syncAllButtons(){
   const isDim=currentTheme==='light';
   const label=isDim?'🌑 Dark':'☀️ Light';
-  const labelShort=isDim?'🌑':'☀️';
-  ['theme-btn','theme-btn-m'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=id.endsWith('-m')?label:labelShort;});
+  const b1=document.getElementById('theme-btn');if(b1)b1.textContent=label;
   const langLabel=currentLang==='pt'?'EN':'PT';
-  ['lang-btn','lang-btn-m'].forEach(id=>{const b=document.getElementById(id);if(b)b.textContent=langLabel;});
+  const b2=document.getElementById('lang-btn');if(b2)b2.textContent=langLabel;
 }
 
 function applyTheme(t){
