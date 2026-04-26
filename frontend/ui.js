@@ -28,7 +28,6 @@ function runTypedEffect() {
   typedTimer = setTimeout(runTypedEffect, isDeleting ? 60 : 110);
 }
 
-// Called by language toggle to restart with new words
 window.restartTyped = function(words) {
   if (typedTimer) clearTimeout(typedTimer);
   TYPED_WORDS = words;
@@ -63,7 +62,6 @@ function toggleMobileMenu() {
   menu.style.display = menu.style.display !== 'none' ? 'none' : 'block';
 }
 
-// ── Global exposure ───────────────────────────────────────────────────────────
 window.switchTab = switchSkillTab;
 window.toggleMenu = toggleMobileMenu;
 
